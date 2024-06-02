@@ -12,6 +12,7 @@ void	free_arr(char **arr)
 	}
 	free(arr);
 }
+
 size_t	ft_strcmp(char *s1, char *s2)
 {
 	size_t	i;
@@ -26,16 +27,16 @@ size_t	ft_strcmp(char *s1, char *s2)
 	return (0);
 }
 
-char	**path(char **env)
+char	*path(char **env)
 {
 	int		i;
 	int		j;
 	char	*str;
 
 	i = 0;
-	j = 0;
 	while (env[i])
 	{
+		j = 0;
 		while (env[i][j] && env[i][j] != '=')
 			j++;
 		str = ft_substr(env[i], 0, j);

@@ -9,7 +9,7 @@ void	execute(char *cmd, char **env)
 	path = find_path(f_cmds[0], env);
 	if (execve(path, f_cmds, env) == -1)
 	{
-		ft_putstr_fd("LOL THIS COMMAND DOES NOT EXIST: ", 2);
+		ft_putstr_fd("LOL! THIS COMMAND DOES NOT EXIST: ", 2);
 		ft_putendl_fd(f_cmds[0], 2);
 		free_arr(f_cmds);
 		free(path);

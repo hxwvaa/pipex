@@ -9,7 +9,7 @@
 # include <unistd.h>
 
 void	free_arr(char **arr);
-char	**path(char **env);
+char	*path(char **env);
 char	*find_path(char *cmd, char **env);
 
 #endif
