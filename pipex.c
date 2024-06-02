@@ -1,8 +1,25 @@
 #include "pipex.h"
 
-void child(char **av, char **env, int *fd)
+void	execute(char *cmd, char **env)
 {
-	int f;
+	char	**act_cmd;
+	char	*path;
+
+	act_cmd = ft_split(cmd, ' ');
+	path = find_path(act_cmd[0], env);
+	if (execve(path, act_cmd, env) == -1)
+	{
+		ft_putstr_fd("LOL THIS COMMAND DOES NOT EXIST: ", 2);
+		ft_putendl_fd(act_cmd[0], 2);
+		free_arr(act_cmd);
+		free(path);
+	}
+}
+
+void	child(char **av, char **env, int *fd)
+{
+	int	f;
+
 	f = open(av[1], O_RDONLY);
 	if (f == -1)
 		exit(-1);
@@ -12,9 +29,10 @@ void child(char **av, char **env, int *fd)
 	execute(av[2], env);
 }
 
-void parent(char **av, char **env, int *fd)
+void	parent(char **av, char **env, int *fd)
 {
-	int f;
+	int	f;
+
 	f = open(av[4], O_WRONLY | O_CREAT, 0777);
 	if (f == -1)
 		exit(-1);
@@ -29,6 +47,12 @@ int	main(int ac, char **av, char **env)
 	int		fd[2];
 	pid_t	id;
 
+	if (ac != 5)
+	{
+		ft_putstr_fd("WRONG FORMAT!\n", 2);
+		ft_putendl_fd("CORRECT FORMAT: ./pipex file1 cmd1 cmd2 file2", 2);
+		exit(5);
+	}
 	if (pipe(fd) == -1)
 		exit(-1);
 	id = fork();
