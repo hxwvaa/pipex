@@ -2,17 +2,18 @@
 
 void	execute(char *cmd, char **env)
 {
-	char	**act_cmd;
+	char	**f_cmds;
 	char	*path;
 
-	act_cmd = ft_split(cmd, ' ');
-	path = find_path(act_cmd[0], env);
-	if (execve(path, act_cmd, env) == -1)
+	f_cmds = ft_split(cmd, ' ');
+	path = find_path(f_cmds[0], env);
+	if (execve(path, f_cmds, env) == -1)
 	{
 		ft_putstr_fd("LOL THIS COMMAND DOES NOT EXIST: ", 2);
-		ft_putendl_fd(act_cmd[0], 2);
-		free_arr(act_cmd);
+		ft_putendl_fd(f_cmds[0], 2);
+		free_arr(f_cmds);
 		free(path);
+		exit(2);
 	}
 }
 
