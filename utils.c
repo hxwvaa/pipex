@@ -68,7 +68,6 @@ char	*find_path(char *cmd, char **env)
 		if (access(cmd_path, F_OK | X_OK) == 0)
 		{
 			free_arr(cmds);
-			free_arr(paths);
 			return (cmd_path);
 		}
 		free(cmd_path);
