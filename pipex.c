@@ -34,7 +34,7 @@ void	parent(char **av, char **env, int *fd)
 {
 	int	f;
 
-	f = open(av[4], O_WRONLY | O_CREAT |O_TRUNC, 0777);
+	f = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (f == -1)
 		exit(1);
 	close(fd[1]);
