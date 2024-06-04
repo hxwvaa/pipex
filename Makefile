@@ -1,18 +1,22 @@
 NAME = pipex
 
-CC = cc
-
-CFLAGS = -Werror -Wall -Wextra -fsanitize=address
-
-RM = rm -rf
-
 SRCS = 	pipex.c\
 		utils.c\
 		libft/libft.a\
 
+SRCS_BONUS = pipex_bonus.c\
+			utils_bonus.c\
+			libft/libft.a\
+
+CC = cc
+
+CFLAGS = -Wall -Werror -Wextra
+
+RM = rm -rf
+
 $(NAME) :
 	make all -C libft
-	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 
 all : $(NAME)
@@ -26,3 +30,7 @@ clean :
 	make clean -C libft
 
 re : fclean all
+
+bonus : clean
+	make all -C libft
+	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME)
