@@ -50,8 +50,8 @@ int	main(int ac, char **av, char **env)
 	if (ac < 5)
 	{
 		ft_putstr_fd("WRONG FORMAT!\n", 2);
-		ft_putendl_fd("CORRECT FORMAT: ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2",
-			2);
+		ft_putstr_fd("CORRECT FORMAT: ", 2);
+		ft_putendl_fd("./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2", 2);
 		exit(1);
 	}
 	in = open(av[1], O_RDONLY);
